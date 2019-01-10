@@ -3,6 +3,17 @@ import { connect } from "react-redux";
 import "./App.css";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      toAdd: 5
+    };
+  }
+
+  onChangeHandler = e => {
+    this.setState({ toAdd: parseInt(e.target.value, 10) });
+  };
+
   render() {
     return (
       <div className="App">
@@ -11,6 +22,17 @@ class App extends Component {
           <button onClick={this.props.onIncrement}>Increase</button>
           <button onClick={this.props.onDecrease}>Decrease</button>
           <button onClick={() => this.props.onAddition(5)}>Add 5</button>
+
+          <fieldset>
+            <input
+              type="number"
+              value={this.state.toAdd}
+              onChange={this.onChangeHandler}
+            />
+            <button onClick={() => this.props.onAddition(this.state.toAdd)}>
+              Add {this.state.toAdd}
+            </button>
+          </fieldset>
         </header>
       </div>
     );
