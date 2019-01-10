@@ -12,6 +12,10 @@ export default (state = initialState, action) => {
       return {
         counter: state.counter - 1
       };
+    case "ADD":
+      return {
+        counter: state.counter + action.value
+      };
     default:
       return state;
   }

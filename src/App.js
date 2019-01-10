@@ -10,6 +10,7 @@ class App extends Component {
           <p>{this.props.counter}</p>
           <button onClick={this.props.onIncrement}>Increase</button>
           <button onClick={this.props.onDecrease}>Decrease</button>
+          <button onClick={() => this.props.onAddition(5)}>Add 5</button>
         </header>
       </div>
     );
@@ -25,7 +26,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onIncrement: () => dispatch({ type: "INCREMENT" }),
-    onDecrease: () => dispatch({ type: "DECREASE" })
+    onDecrease: () => dispatch({ type: "DECREASE" }),
+    onAddition: amount => dispatch({ type: "ADD", value: amount })
   };
 };
 
