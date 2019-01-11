@@ -35,7 +35,9 @@ class App extends Component {
             </button>
           </fieldset>
 
-          <button onClick={this.props.storeResult}>Store result</button>
+          <button onClick={() => this.props.storeResult(this.props.counter)}>
+            Store result
+          </button>
           <ul>
             {this.props.results.map(result => (
               <li
@@ -54,8 +56,8 @@ class App extends Component {
 
 const mapStateToProps = state => {
   return {
-    counter: state.counter,
-    results: state.results
+    counter: state.counter.counter,
+    results: state.results.results
   };
 };
 
@@ -64,7 +66,8 @@ const mapDispatchToProps = dispatch => {
     onIncrement: () => dispatch({ type: actionTypes.INCREMENT }),
     onDecrease: () => dispatch({ type: actionTypes.DECREMENT }),
     onAddition: amount => dispatch({ type: actionTypes.ADD, value: amount }),
-    storeResult: () => dispatch({ type: actionTypes.STORE_RESULT }),
+    storeResult: result =>
+      dispatch({ type: actionTypes.STORE_RESULT, value: result }),
     removeResult: id => {
       dispatch({ type: actionTypes.REMOVE_RESULT, id: id });
     }
