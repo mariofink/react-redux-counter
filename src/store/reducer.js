@@ -20,7 +20,7 @@ export default (state = initialState, action) => {
     case "STORE_RESULT":
       return {
         ...state,
-        results: [...state.results, action.result]
+        results: [...state.results, state.counter]
       };
     default:
       return state;
