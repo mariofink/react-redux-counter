@@ -37,7 +37,7 @@ class App extends Component {
           <button onClick={this.props.storeResult}>Store result</button>
           <ul>
             {this.props.results.map(result => (
-              <li>{result}</li>
+              <li key={"result-" + result}>{result}</li>
             ))}
           </ul>
         </header>
