@@ -20,7 +20,10 @@ export default (state = initialState, action) => {
     case "STORE_RESULT":
       return {
         ...state,
-        results: [...state.results, state.counter]
+        results: [
+          ...state.results,
+          { id: new Date().toISOString(), value: state.counter }
+        ]
       };
     default:
       return state;
