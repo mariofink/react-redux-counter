@@ -1,3 +1,5 @@
+import * as actionTypes from "./actions";
+
 const initialState = {
   counter: 5,
   results: []
@@ -5,19 +7,19 @@ const initialState = {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case "INCREMENT":
+    case actionTypes.INCREMENT:
       return { ...state, counter: state.counter + 1 };
-    case "DECREASE":
+    case actionTypes.DECREMENT:
       return {
         ...state,
         counter: state.counter - 1
       };
-    case "ADD":
+    case actionTypes.ADD:
       return {
         ...state,
         counter: state.counter + action.value
       };
-    case "STORE_RESULT":
+    case actionTypes.STORE_RESULT:
       return {
         ...state,
         results: [
@@ -25,7 +27,7 @@ export default (state = initialState, action) => {
           { id: new Date().toISOString(), value: state.counter }
         ]
       };
-    case "REMOVE_RESULT":
+    case actionTypes.REMOVE_RESULT:
       return {
         ...state,
         results: state.results.filter(result => result.id !== action.id)

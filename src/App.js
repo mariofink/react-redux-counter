@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import * as actionTypes from "./store/actions";
 import "./App.css";
 
 class App extends Component {
@@ -60,12 +61,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onIncrement: () => dispatch({ type: "INCREMENT" }),
-    onDecrease: () => dispatch({ type: "DECREASE" }),
-    onAddition: amount => dispatch({ type: "ADD", value: amount }),
-    storeResult: () => dispatch({ type: "STORE_RESULT" }),
+    onIncrement: () => dispatch({ type: actionTypes.INCREMENT }),
+    onDecrease: () => dispatch({ type: actionTypes.DECREMENT }),
+    onAddition: amount => dispatch({ type: actionTypes.ADD, value: amount }),
+    storeResult: () => dispatch({ type: actionTypes.STORE_RESULT }),
     removeResult: id => {
-      dispatch({ type: "REMOVE_RESULT", id: id });
+      dispatch({ type: actionTypes.REMOVE_RESULT, id: id });
     }
   };
 };
