@@ -25,6 +25,11 @@ export default (state = initialState, action) => {
           { id: new Date().toISOString(), value: state.counter }
         ]
       };
+    case "REMOVE_RESULT":
+      return {
+        ...state,
+        results: state.results.filter(result => result.id !== action.id)
+      };
     default:
       return state;
   }

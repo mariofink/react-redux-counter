@@ -37,7 +37,12 @@ class App extends Component {
           <button onClick={this.props.storeResult}>Store result</button>
           <ul>
             {this.props.results.map(result => (
-              <li key={result.id}>{result.value}</li>
+              <li
+                key={result.id}
+                onClick={() => this.props.removeResult(result.id)}
+              >
+                {result.value}
+              </li>
             ))}
           </ul>
         </header>
@@ -58,7 +63,10 @@ const mapDispatchToProps = dispatch => {
     onIncrement: () => dispatch({ type: "INCREMENT" }),
     onDecrease: () => dispatch({ type: "DECREASE" }),
     onAddition: amount => dispatch({ type: "ADD", value: amount }),
-    storeResult: () => dispatch({ type: "STORE_RESULT" })
+    storeResult: () => dispatch({ type: "STORE_RESULT" }),
+    removeResult: id => {
+      dispatch({ type: "REMOVE_RESULT", id: id });
+    }
   };
 };
 
