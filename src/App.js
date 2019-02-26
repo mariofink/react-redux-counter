@@ -20,6 +20,9 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <p>{this.props.counter}</p>
+          <button onClick={this.props.onIncrementAsync}>
+            Increment after 1 second
+          </button>
           <button onClick={this.props.onIncrement}>Increase</button>
           <button onClick={this.props.onDecrease}>Decrease</button>
           <button onClick={() => this.props.onAddition(5)}>Add 5</button>
@@ -64,6 +67,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onIncrement: () => dispatch({ type: actionTypes.INCREMENT }),
+    onIncrementAsync: () => dispatch({ type: actionTypes.INCREMENT_ASYNC }),
     onDecrease: () => dispatch({ type: actionTypes.DECREMENT }),
     onAddition: amount => dispatch({ type: actionTypes.ADD, value: amount }),
     storeResult: result =>
