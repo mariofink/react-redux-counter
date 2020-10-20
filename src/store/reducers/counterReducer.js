@@ -1,23 +1,15 @@
 import * as actionTypes from "../actions";
 
-const initialState = {
-  counter: 5
-};
+const initialState = 5;
 
 export default (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.INCREMENT:
-      return { ...state, counter: state.counter + 1 };
+      return state + 1;
     case actionTypes.DECREMENT:
-      return {
-        ...state,
-        counter: state.counter - 1
-      };
+      return state - 1;
     case actionTypes.ADD:
-      return {
-        ...state,
-        counter: state.counter + action.value
-      };
+      return state + action.value;
     default:
       return state;
   }

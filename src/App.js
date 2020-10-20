@@ -7,11 +7,11 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      toAdd: 5
+      toAdd: 5,
     };
   }
 
-  onChangeHandler = e => {
+  onChangeHandler = (e) => {
     this.setState({ toAdd: parseInt(e.target.value, 10) });
   };
 
@@ -39,7 +39,7 @@ class App extends Component {
             Store result
           </button>
           <ul>
-            {this.props.results.map(result => (
+            {this.props.results.map((result) => (
               <li
                 key={result.id}
                 onClick={() => this.props.removeResult(result.id)}
@@ -54,27 +54,24 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    counter: state.counter.counter,
-    results: state.results.results
+    counter: state.counter,
+    results: state.results,
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     onIncrement: () => dispatch({ type: actionTypes.INCREMENT }),
     onDecrease: () => dispatch({ type: actionTypes.DECREMENT }),
-    onAddition: amount => dispatch({ type: actionTypes.ADD, value: amount }),
-    storeResult: result =>
+    onAddition: (amount) => dispatch({ type: actionTypes.ADD, value: amount }),
+    storeResult: (result) =>
       dispatch({ type: actionTypes.STORE_RESULT, value: result }),
-    removeResult: id => {
+    removeResult: (id) => {
       dispatch({ type: actionTypes.REMOVE_RESULT, id: id });
-    }
+    },
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
