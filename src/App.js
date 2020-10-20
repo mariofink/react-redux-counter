@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { increment, decrement, add } from "./store/counterSlice";
-import { storeResult, removeResult } from "./store/actions/resultsActions";
+import { storeResult, removeResult } from "./store/resultsSlice";
 import "./App.css";
 
 const App = (props) => {

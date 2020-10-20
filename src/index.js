@@ -6,7 +6,7 @@ import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import counterReducer from "./store/counterSlice";
-import resultsReducer from "./store/reducers/resultsReducer";
+import resultsReducer from "./store/resultsSlice";
 
 const store = configureStore({
   reducer: {
