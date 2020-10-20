@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import "./index.css";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
-import counterReducer from "./store/reducers/counterReducer";
+import counterReducer from "./store/counterSlice";
 import resultsReducer from "./store/reducers/resultsReducer";
 
 const store = configureStore({

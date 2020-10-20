@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  onIncrement,
-  onDecrement,
-  onAddition,
-} from "./store/actions/counterActions";
+import { increment, decrement, add } from "./store/counterSlice";
 import { storeResult, removeResult } from "./store/actions/resultsActions";
 import "./App.css";
 
@@ -18,9 +14,9 @@ const App = (props) => {
     <div className="App">
       <header className="App-header">
         <p>{counter}</p>
-        <button onClick={() => dispatch(onIncrement())}>Increase</button>
-        <button onClick={() => dispatch(onDecrement())}>Decrease</button>
-        <button onClick={() => dispatch(onAddition(5))}>Add 5</button>
+        <button onClick={() => dispatch(increment())}>Increase</button>
+        <button onClick={() => dispatch(decrement())}>Decrease</button>
+        <button onClick={() => dispatch(add(5))}>Add 5</button>
 
         <fieldset>
           <input
@@ -28,9 +24,7 @@ const App = (props) => {
             value={toAdd}
             onChange={(e) => setToAdd(parseInt(e.target.value, 10))}
           />
-          <button onClick={() => dispatch(onAddition(toAdd))}>
-            Add {toAdd}
-          </button>
+          <button onClick={() => dispatch(add(toAdd))}>Add {toAdd}</button>
         </fieldset>
 
         <button onClick={() => dispatch(storeResult(counter))}>
