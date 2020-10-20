@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import * as actionTypes from "./store/actions";
+import {
+  onIncrement,
+  onDecrement,
+  onAddition,
+} from "./store/actions/counterActions";
+import { storeResult, removeResult } from "./store/actions/resultsActions";
 import "./App.css";
 
 const App = (props) => {
@@ -9,23 +14,13 @@ const App = (props) => {
   const results = useSelector((state) => state.results);
   const dispatch = useDispatch();
 
-  // ACTIONS
-  const onIncrement = () => dispatch({ type: actionTypes.INCREMENT });
-  const onDecrease = () => dispatch({ type: actionTypes.DECREMENT });
-  const onAddition = (amount) =>
-    dispatch({ type: actionTypes.ADD, value: amount });
-  const storeResult = (result) =>
-    dispatch({ type: actionTypes.STORE_RESULT, value: result });
-  const removeResult = (id) =>
-    dispatch({ type: actionTypes.REMOVE_RESULT, id: id });
-
   return (
     <div className="App">
       <header className="App-header">
         <p>{counter}</p>
-        <button onClick={onIncrement}>Increase</button>
-        <button onClick={onDecrease}>Decrease</button>
-        <button onClick={() => onAddition(5)}>Add 5</button>
+        <button onClick={() => dispatch(onIncrement())}>Increase</button>
+        <button onClick={() => dispatch(onDecrement())}>Decrease</button>
+        <button onClick={() => dispatch(onAddition(5))}>Add 5</button>
 
         <fieldset>
           <input
@@ -33,13 +28,20 @@ const App = (props) => {
             value={toAdd}
             onChange={(e) => setToAdd(parseInt(e.target.value, 10))}
           />
-          <button onClick={() => onAddition(toAdd)}>Add {toAdd}</button>
+          <button onClick={() => dispatch(onAddition(toAdd))}>
+            Add {toAdd}
+          </button>
         </fieldset>
 
-        <button onClick={() => storeResult(counter)}>Store result</button>
+        <button onClick={() => dispatch(storeResult(counter))}>
+          Store result
+        </button>
         <ul>
           {results.map((result) => (
-            <li key={result.id} onClick={() => removeResult(result.id)}>
+            <li
+              key={result.id}
+              onClick={() => dispatch(removeResult(result.id))}
+            >
               {result.value}
             </li>
           ))}

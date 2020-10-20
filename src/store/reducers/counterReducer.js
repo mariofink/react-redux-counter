@@ -1,4 +1,4 @@
-import * as actionTypes from "../actions";
+import * as actionTypes from "../actiontypes";
 
 const initialState = 5;
 
