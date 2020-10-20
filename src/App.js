@@ -1,58 +1,41 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import * as actionTypes from "./store/actions";
 import "./App.css";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      toAdd: 5,
-    };
-  }
+const App = (props) => {
+  const [toAdd, setToAdd] = useState(5);
+  return (
+    <div className="App">
+      <header className="App-header">
+        <p>{props.counter}</p>
+        <button onClick={props.onIncrement}>Increase</button>
+        <button onClick={props.onDecrease}>Decrease</button>
+        <button onClick={() => props.onAddition(5)}>Add 5</button>
 
-  onChangeHandler = (e) => {
-    this.setState({ toAdd: parseInt(e.target.value, 10) });
-  };
+        <fieldset>
+          <input
+            type="number"
+            value={toAdd}
+            onChange={(e) => setToAdd(parseInt(e.target.value, 10))}
+          />
+          <button onClick={() => props.onAddition(toAdd)}>Add {toAdd}</button>
+        </fieldset>
 
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <p>{this.props.counter}</p>
-          <button onClick={this.props.onIncrement}>Increase</button>
-          <button onClick={this.props.onDecrease}>Decrease</button>
-          <button onClick={() => this.props.onAddition(5)}>Add 5</button>
-
-          <fieldset>
-            <input
-              type="number"
-              value={this.state.toAdd}
-              onChange={this.onChangeHandler}
-            />
-            <button onClick={() => this.props.onAddition(this.state.toAdd)}>
-              Add {this.state.toAdd}
-            </button>
-          </fieldset>
-
-          <button onClick={() => this.props.storeResult(this.props.counter)}>
-            Store result
-          </button>
-          <ul>
-            {this.props.results.map((result) => (
-              <li
-                key={result.id}
-                onClick={() => this.props.removeResult(result.id)}
-              >
-                {result.value}
-              </li>
-            ))}
-          </ul>
-        </header>
-      </div>
-    );
-  }
-}
+        <button onClick={() => props.storeResult(props.counter)}>
+          Store result
+        </button>
+        <ul>
+          {props.results.map((result) => (
+            <li key={result.id} onClick={() => props.removeResult(result.id)}>
+              {result.value}
+            </li>
+          ))}
+        </ul>
+      </header>
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => {
   return {
