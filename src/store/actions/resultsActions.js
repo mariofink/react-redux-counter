@@ -1,10 +1,5 @@
+import { createAction } from "@reduxjs/toolkit";
 import * as actionTypes from "../actiontypes";
 
-export const storeResult = (result) => ({
-  type: actionTypes.STORE_RESULT,
-  value: result,
-});
-export const removeResult = (id) => ({
-  type: actionTypes.REMOVE_RESULT,
-  id: id,
-});
+export const storeResult = createAction(actionTypes.STORE_RESULT);
+export const removeResult = createAction(actionTypes.REMOVE_RESULT);
