@@ -9,7 +9,7 @@ export default (state = initialState, action) => {
     case actionTypes.DECREMENT:
       return state - 1;
     case actionTypes.ADD:
-      return state + action.value;
+      return state + action.payload;
     default:
       return state;
   }
