@@ -1,16 +1,11 @@
+import { createReducer } from "@reduxjs/toolkit";
 import * as actionTypes from "../actiontypes";
 
-const initialState = 5;
+const counterReducer = createReducer(5, (builder) => {
+  builder
+    .addCase(actionTypes.INCREMENT, (state) => state + 1)
+    .addCase(actionTypes.DECREMENT, (state) => state - 1)
+    .addCase(actionTypes.ADD, (state, action) => state + action.payload);
+});
 
-export default (state = initialState, action) => {
-  switch (action.type) {
-    case actionTypes.INCREMENT:
-      return state + 1;
-    case actionTypes.DECREMENT:
-      return state - 1;
-    case actionTypes.ADD:
-      return state + action.payload;
-    default:
-      return state;
-  }
-};
+export default counterReducer;

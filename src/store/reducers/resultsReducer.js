@@ -1,17 +1,17 @@
+import { createReducer } from "@reduxjs/toolkit";
 import * as actionTypes from "../actiontypes";
 
-const initialState = [];
-
-export default (state = initialState, action) => {
-  switch (action.type) {
-    case actionTypes.STORE_RESULT:
+const resultsReducer = createReducer([], (builder) => {
+  builder
+    .addCase(actionTypes.STORE_RESULT, (state, action) => {
       return [
         ...state,
         { id: new Date().toISOString(), value: action.payload },
       ];
-    case actionTypes.REMOVE_RESULT:
+    })
+    .addCase(actionTypes.REMOVE_RESULT, (state, action) => {
       return state.filter((result) => result.id !== action.payload);
-    default:
-      return state;
-  }
-};
+    });
+});
+
+export default resultsReducer;
